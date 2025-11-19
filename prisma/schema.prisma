@@ -1,0 +1,61 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model Usuario {
+  id        Int       @id @default(autoincrement())
+  nome      String
+  login     String    @unique
+  senha     String
+  cargo     String?
+  role      String    @default("user")
+  criadoEm  DateTime  @default(now())
+  atualizadoEm DateTime @updatedAt
+
+  jornadas  Jornada[]
+  producoes Producao[]
+  ferias    Ferias[]
+  folhas    Folha[]
+}
+
+model Jornada {
+  id         Int      @id @default(autoincrement())
+  data       DateTime
+  entrada    DateTime
+  saida      DateTime
+  horasTotais Float
+  usuarioId  Int
+  usuario    Usuario  @relation(fields: [usuarioId], references: [id])
+}
+
+model Producao {
+  id         Int      @id @default(autoincrement())
+  data       DateTime
+  tipo       String
+  quantidade Int
+  observacao String?
+  usuarioId  Int
+  usuario    Usuario  @relation(fields: [usuarioId], references: [id])
+}
+
+model Ferias {
+  id         Int      @id @default(autoincrement())
+  inicio     DateTime
+  fim        DateTime
+  usuarioId  Int
+  usuario    Usuario  @relation(fields: [usuarioId], references: [id])
+}
+
+model Folha {
+  id         Int      @id @default(autoincrement())
+  mes        String
+  ano        Int
+  status     String   @default("pendente")
+  usuarioId  Int
+  usuario    Usuario  @relation(fields: [usuarioId], references: [id])
+}
