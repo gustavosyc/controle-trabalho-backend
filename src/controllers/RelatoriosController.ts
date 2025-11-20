@@ -55,10 +55,12 @@ export class RelatoriosController {
         userData.totalHoras += jornada.horasTotais;
         userData.diasTrabalhados += 1;
         userData.jornadas.push({
+          id: jornada.id,
           data: jornada.data,
           entrada: jornada.entrada,
           saida: jornada.saida,
-          horas: jornada.horasTotais,
+          horasTotais: jornada.horasTotais,
+          observacao: jornada.observacao,
         });
       });
 
@@ -130,6 +132,7 @@ export class RelatoriosController {
         const userData = usuariosMap.get(userId);
         userData.totalProducao += producao.quantidade;
         userData.producoes.push({
+          id: producao.id,
           data: producao.data,
           tipo: producao.tipo,
           quantidade: producao.quantidade,
