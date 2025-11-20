@@ -10,6 +10,10 @@ import feriasRoutes from './routes/ferias';
 import folhaRoutes from './routes/folha';
 import adminRoutes from './routes/admin';
 import relatoriosRoutes from './routes/relatorios';
+import metasRoutes from './routes/metas';
+import aprovacoesRoutes from './routes/aprovacoes';
+import bancoHorasRoutes from './routes/banco-horas';
+import perfilRoutes from './routes/perfil';
 
 dotenv.config();
 export const prisma = new PrismaClient();
@@ -27,5 +31,9 @@ app.use('/ferias', feriasRoutes);
 app.use('/folha', folhaRoutes);
 app.use('/admin', adminRoutes);
 app.use('/relatorios', relatoriosRoutes);
+app.use('/metas', metasRoutes);
+app.use('/aprovacoes', aprovacoesRoutes);
+app.use('/banco-horas', bancoHorasRoutes);
+app.use('/perfil', perfilRoutes);
 
 export default app;
