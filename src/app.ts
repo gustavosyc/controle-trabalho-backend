@@ -9,6 +9,7 @@ import producaoRoutes from './routes/producao';
 import feriasRoutes from './routes/ferias';
 import folhaRoutes from './routes/folha';
 import adminRoutes from './routes/admin';
+import relatoriosRoutes from './routes/relatorios';
 
 dotenv.config();
 export const prisma = new PrismaClient();
@@ -25,5 +26,6 @@ app.use('/producao', producaoRoutes);
 app.use('/ferias', feriasRoutes);
 app.use('/folha', folhaRoutes);
 app.use('/admin', adminRoutes);
+app.use('/relatorios', relatoriosRoutes);
 
 export default app;

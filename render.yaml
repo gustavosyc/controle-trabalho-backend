@@ -1,0 +1,17 @@
+services:
+  - type: web
+    name: controle-trabalho-backend
+    env: node
+    region: frankfurt
+    plan: free
+    buildCommand: npm install && npx prisma generate && npm run build
+    startCommand: npm start
+    envVars:
+      - key: DATABASE_URL
+        sync: false
+      - key: JWT_SECRET
+        sync: false
+      - key: PORT
+        value: 3333
+      - key: NODE_ENV
+        value: production
